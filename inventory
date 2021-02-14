@@ -1,14 +1,20 @@
 [Web-server]
+10.7.1.53
 
 [Monitoring-server]
+10.7.1.83
 
 [Redis-server-a]
+10.7.3.67
 
 [Redis-server-b]
+10.7.5.239
 
 [App-Server-a]
+10.7.2.77
 
 [App-Server-b]
+10.7.4.144
 
 
 [All-server]
