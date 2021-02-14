@@ -1,0 +1,30 @@
+---
+- hosts: Monitoring-server
+  tasks:
+    - name: simple ping
+      ping:
+
+    - name: start docker service
+      service:
+        name: docker
+        state: started
+      become: true
+
+    - name: Build docker Image
+      community.general.docker_image:
+        name: jibolaolu
+        build:
+          path: ./finalproject
+        source: build
+        state: present
+    - name: Log into DockerHub
+      community.general.docker_login:
+        name: jibolaolu
+        password: Adiomowo1
+
+    - name: Tag and Push to dockerhub
+      community.general.docker_image:
+        name: jibolaolu
+        repository: jibolaolu/votingapp
+        push: yes
+        source: local

@@ -1,0 +1,23 @@
+---
+- hosts: App-Server-a
+  tasks:
+    - name: simple ping
+      ping:
+
+    - name: start Docker service
+      service:
+        name: docker
+        state: started
+      become: true
+
+    - name: Run Voting App Container
+      community.general.docker_container:
+        name: voteApp
+        image: jibolaolu/votingapp
+        env:
+          REDIS: 10.
+          REDIS_PORT: "6379"
+          REDIS_PWD: redis
+        ports:
+          - "80:80"
+        restart: yes

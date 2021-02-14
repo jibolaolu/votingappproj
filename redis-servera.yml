@@ -1,0 +1,25 @@
+---
+- hosts: Redis-server-a
+  tasks:
+    - name: start docker service
+      service:
+        name: docker
+        state: started
+      become: true
+
+    - name: Copy Redis Config file
+      copy:
+        src: ./configs/redis1.conf
+        dest: /home/ec2-user/
+        mode: '0777'
+
+    - name: Run Redis Container
+      community.general.docker_container:
+        name: Redis
+        image: redis
+        volumes:
+          - /home/ec2-user/redis1.conf:/etc/redis/redis.conf
+        ports:
+          - "6379:6379"
+        command: redis-server /etc/redis/redis.conf
+        restart: yes
