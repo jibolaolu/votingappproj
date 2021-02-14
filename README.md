@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Voting app Using Redis and Flask [Techbleat Final Project ]
 
 A simple voting app that uses Redis for a data store and a Python Flask app for the frontend.
@@ -60,3 +61,6 @@ run redis [ single nodes ] as
 ```
 docker run -d -p 6379:6379   -e REDIS_PASSWORD=redis --name redis redis /bin/sh -c 'redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}'
 ```
+=======
+# votingappproj
+>>>>>>> 9d540a95c52d34a6a642bd6788a89c4d51baf77e
