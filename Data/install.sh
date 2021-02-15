@@ -8,7 +8,9 @@ sudo yum -y install java-1.8.0-openjdk-devel.x86_64
 #Install Ansible
 sudo amazon-linux-extras install ansible2 -y
 
-sudo ansible-galaxy collection install community.general
+sudo pip install docker-py
+
+ansible-galaxy collection install community.general
 
 
 #Install Git
