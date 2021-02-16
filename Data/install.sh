@@ -11,7 +11,7 @@ sudo yum -y install java-1.8.0-openjdk-devel.x86_64
 #sudo yum install python-pip -y
 #sudo pip install docker-py
 
-sudo pip install docker-py
+#sudo pip install docker-py
 sudo pip install ansible --no-cache-dir
 ansible-galaxy collection install community.general
 #ansible-galaxy collection install community.general

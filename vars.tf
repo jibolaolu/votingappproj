@@ -38,7 +38,7 @@ variable "availability_zone1" {
 
 variable "ami-id" {
   description = "all ec2 instance will be using this ami"
-  default     = "ami-02f05a2483ddcac29"
+  default     = "ami-05bca204debf5aaeb"
 }
 
 variable "instance_type" {
