@@ -1,5 +1,5 @@
 ---
-- hosts: Monitoring-server
+- hosts: Toolbox
   tasks:
     - name: simple ping
       ping:
