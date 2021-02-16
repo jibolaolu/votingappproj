@@ -14,7 +14,7 @@
       community.general.docker_image:
         name: jibolaolu
         build:
-          path: /test-ansible
+          path: /var/lib/jenkins/workspace/test-ansible
         source: build
         state: present
 
