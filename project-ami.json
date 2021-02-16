@@ -30,7 +30,11 @@
         "sudo systemctl start docker",
         "sudo usermod -aG docker ec2-user",
         "sudo systemctl enable docker",
-        "sudo chkconfig docker on"
+        "sudo chkconfig docker on",
+        "sudo yum install python-pip -y",
+        "sudo pip install docker",
+        "sudo pip install docker-py"
+
       ]
     },
     {
