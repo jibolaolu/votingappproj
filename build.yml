@@ -14,7 +14,7 @@
       community.general.docker_image:
         name: jibolaolu
         build:
-          path: ./
+          path: ./votingappproj
         source: build
         state: present
 
