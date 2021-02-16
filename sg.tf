@@ -1,5 +1,5 @@
 resource "aws_security_group" "Public_Instance_SG" {
-  vpc_id = aws_vpc.finalproject-VPC.id
+  vpc_id      = aws_vpc.finalproject-VPC.id
   description = "This is for the servers in the Public Subnet"
   ingress {
     #For SSH Connection
