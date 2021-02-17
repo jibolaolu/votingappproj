@@ -21,12 +21,12 @@
 
     - name: Log into DockerHub
       community.general.docker_login:
-        name: jibolaolu
+        username: jibolaolu
         password: Adiomowo1
 
     - name: Tag and Push to dockerhub
       community.general.docker_image:
-        name: jibolaApp
+        name: jibolaoluapp
         repository: jibolaolu/votingapp
         push: yes
         source: local
