@@ -26,7 +26,7 @@
 
     - name: Tag and Push to dockerhub
       community.general.docker_image:
-        name: jibolaolu
+        name: jibolaApp
         repository: jibolaolu/votingapp
         push: yes
         source: local
