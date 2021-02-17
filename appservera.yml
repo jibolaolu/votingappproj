@@ -23,8 +23,8 @@
         restart: yes
 
     - name: Run node exporter
-        community.general.docker_container:
-          name: node-exporter
-          image: prom/node-exporter
-          ports:
-            - "9100:9100"
+      community.general.docker_container:
+        name: node-exporter
+        image: prom/node-exporter
+        ports:
+          - "9100:9100"
