@@ -1,0 +1,43 @@
+---
+- hosts: Monitoring-server
+  tasks:
+    - name: Simple Ping
+      ping:
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+      become: true
+
+    - name: Run Prometheus Container
+      community.general.docker_container:
+        name: prometheus
+        image: prom/prometheus
+        volumes:
+          - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
+        ports:
+          - "9090:9090"
+        restart: yes
+
+    - name: Run Alert Manager
+      community.general.docker_container:
+        name: alertmanager
+        image: prom/alertmanager:v0.12.0
+        ports:
+          - "9093:9093"
+
+    - name: Run Grafana Container
+      community.general.docker_container:
+        name: grafana
+        image: grafana/grafana:7.2.1
+        ports:
+          - "3000:3000"
+
+    - name: Run node exporter
+      community.general.docker_container:
+        name: node-exporter
+        image: prom/node-exporter
+        ports:
+          - "9100:9100"
+
