@@ -14,7 +14,7 @@
       community.general.docker_image:
         name: jibolaolu
         build:
-          path: /var/lib/jenkins/workspace/testansible
+          path: ./testansible
         source: build
         state: present
       become: true
