@@ -26,7 +26,7 @@
       become: true
 
     - name: Copy file to Ha-Proxy
-      template:
+      copy:
         src: /home/ec2-user/haproxy.cfg
         dest: /etc/haproxy/haproxy.cfg
         mode: '0777'
