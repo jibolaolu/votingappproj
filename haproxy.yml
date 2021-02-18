@@ -27,7 +27,7 @@
 
     - name: Copy file to Ha-Proxy
       copy:
-        src: /home/ec2-user/haproxy.cfg
+        src: ./configs/haproxy.cfg
         dest: /etc/haproxy/haproxy.cfg
         mode: '0777'
       become: true
