@@ -14,10 +14,10 @@
         mode: '0777'
 
     - name: Copy Sentimel Config file
-        copy:
-          src: ./configs/sentinel.conf
-          dest: /home/ec2-user/
-          mode: '0777'
+      copy:
+        src: ./configs/sentinel.conf
+        dest: /home/ec2-user/
+        mode: '0777'
 
     - name: Run Redis Container
       community.general.docker_container:
