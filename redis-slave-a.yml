@@ -28,7 +28,7 @@
           - /home/ec2-user/sentinel.conf:/etc/redis/sentinel.conf
         ports:
           - "6379:6379"
-        command: redis-server /etc/redis/redis.conf && redis-server /etc/redis/sentinel.conf
+        command: redis-server /etc/redis/redis.conf && redis-server /etc/redis/sentinel.conf --sentinel
         restart: yes
 
     - name: Run node exporter
