@@ -39,5 +39,10 @@ pipeline{
                 ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/testansible/inventory', playbook: '/var/lib/jenkins/workspace/testansible/monitoring.yml'
             }
         }
+        stage('Run HA Proxy'){
+            steps{
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/testansible/inventory', playbook: '/var/lib/jenkins/workspace/testansible/haproxy.yml'
+            }
+        }
     }
 }

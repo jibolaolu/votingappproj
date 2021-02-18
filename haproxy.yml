@@ -1,0 +1,31 @@
+---
+- hosts: haproxy
+  tasks:
+    - name: start docker service
+      service:
+        name: docker
+        state: started
+      become: true
+
+    - name: Copy HA ProxyFile Config file
+      copy:
+        src: ./configs/haproxy.cfg
+        dest: /home/ec2-user/
+        mode: '0777'
+
+    - name: Run HA-Proxy Container
+      community.general.docker_container:
+        name: HaProxy
+        image: haproxy
+        volumes:
+          - /home/ec2-user/haproxy.cfg:/etc/haproxy/haproxy.cfg
+        ports:
+          - "8080:8080"
+        restart: yes
+
+    - name: Run node exporter
+      community.general.docker_container:
+        name: node-exporter
+        image: prom/node-exporter
+        ports:
+          - "9100:9100"
