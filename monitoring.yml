@@ -10,7 +10,7 @@
         state: started
       become: true
 
-    - name: Copy nginx config file
+    - name: Copy Prometheus config file
       copy:
         src: ./configs/prometheus.yml
         dest: /home/ec2-user/

@@ -16,6 +16,13 @@ resource "aws_security_group" "Public_Instance_SG" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  #Connection for Webserver
+  ingress {
+    from_port   = 80
+    protocol    = "tcp"
+    to_port     = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   #Connection for Grafana
   ingress {
     from_port   = 3000
@@ -72,14 +79,6 @@ resource "aws_security_group" "Public_Instance_SG" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  #Connection to the outer world
-  egress {
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
   #Connectoion to Red 2b
   ingress {
     from_port   = 6380
@@ -88,8 +87,26 @@ resource "aws_security_group" "Public_Instance_SG" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  #Connectoion to Sentimel
+  ingress {
+    from_port   = 26379
+    protocol    = "tcp"
+    to_port     = 26379
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  #Connection to the outer world
+  egress {
+    from_port   = 0
+    protocol    = "-1"
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+
+
   tags = {
-    Name = "${var.servicename}-PublicSG"
+    Name = "${var.servicename}-SG"
   }
 
 }

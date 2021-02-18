@@ -23,8 +23,9 @@ pipeline{
         }
         stage('Run Redis Database'){
             steps{
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/testansible/inventory', playbook: '/var/lib/jenkins/workspace/testansible/redis-servera.yml'
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/testansible/inventory', playbook: '/var/lib/jenkins/workspace/testansible/redis-serverb.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/testansible/inventory', playbook: '/var/lib/jenkins/workspace/testansible/redis-master.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/testansible/inventory', playbook: '/var/lib/jenkins/workspace/testansible/redis-slave-a.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/testansible/inventory', playbook: '/var/lib/jenkins/workspace/testansible/redis-slave-b.yml'
             }
         }
         stage('Build Voting App'){

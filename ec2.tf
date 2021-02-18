@@ -63,10 +63,34 @@ resource "aws_instance" "Redis-Server-A" {
   security_groups   = [aws_security_group.Public_Instance_SG.id]
   key_name          = var.keypair
   tags = {
-    Name = "${var.servicename}-Redis-Server-a"
+    Name = "${var.servicename}-Redis-Master"
   }
 }
 
+#App Server in AZ a
+resource "aws_instance" "Redis-Slave-A" {
+  ami               = var.ami-id
+  instance_type     = var.instance_type
+  availability_zone = var.availability_zone1
+  subnet_id         = aws_subnet.Subnet_Redis1.id
+  security_groups   = [aws_security_group.Public_Instance_SG.id]
+  key_name          = var.keypair
+  tags = {
+    Name = "${var.servicename}-Redis-Slave-A"
+  }
+}
+
+resource "aws_instance" "HA-Proxy" {
+  ami               = var.ami-id
+  instance_type     = var.instance_type
+  availability_zone = var.availability_zone1
+  subnet_id         = aws_subnet.Subnet_Redis1.id
+  security_groups   = [aws_security_group.Public_Instance_SG.id]
+  key_name          = var.keypair
+  tags = {
+    Name = "${var.servicename}-HA-Proxy"
+  }
+}
 #App Server in AZ B
 resource "aws_instance" "App-Server-B" {
   ami               = var.ami-id
@@ -81,7 +105,7 @@ resource "aws_instance" "App-Server-B" {
 }
 
 #App Server in AZ B
-resource "aws_instance" "Redis-Server-B" {
+resource "aws_instance" "Redis-Slave-B" {
   ami               = var.ami-id
   instance_type     = var.instance_type
   availability_zone = var.availability_zone2
@@ -89,6 +113,6 @@ resource "aws_instance" "Redis-Server-B" {
   security_groups   = [aws_security_group.Public_Instance_SG.id]
   key_name          = var.keypair
   tags = {
-    Name = "${var.servicename}-Redis-Server-B"
+    Name = "${var.servicename}-Redis-Slave-B"
   }
 }

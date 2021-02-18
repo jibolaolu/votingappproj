@@ -1,5 +1,5 @@
 ---
-- hosts: Redis-server-b
+- hosts: Redis-master
   tasks:
     - name: start docker service
       service:
@@ -9,7 +9,7 @@
 
     - name: Copy Redis Config file
       copy:
-        src: ./configs/redis2.conf
+        src: ./configs/redis-master.conf
         dest: /home/ec2-user/
         mode: '0777'
 
@@ -18,7 +18,7 @@
         name: Redis
         image: redis
         volumes:
-          - /home/ec2-user/redis2.conf:/etc/redis/redis.conf
+          - /home/ec2-user/redis-master.conf:/etc/redis/redis.conf
         ports:
           - "6379:6379"
         command: redis-server /etc/redis/redis.conf
