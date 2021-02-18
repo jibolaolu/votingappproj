@@ -17,6 +17,7 @@
       yum:
         name: haproxy
         state: present
+      become: true
 
     - name: Start Ha-Proxy
       service:
