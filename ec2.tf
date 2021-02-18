@@ -84,7 +84,7 @@ resource "aws_instance" "HA-Proxy" {
   ami               = var.ami-id
   instance_type     = var.instance_type
   availability_zone = var.availability_zone1
-  subnet_id         = aws_subnet.Subnet_Redis1.id
+  subnet_id         = aws_subnet.finalprojectPublicSubnet1.id
   security_groups   = [aws_security_group.Public_Instance_SG.id]
   key_name          = var.keypair
   tags = {
