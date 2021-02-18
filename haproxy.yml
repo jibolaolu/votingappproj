@@ -21,7 +21,7 @@
 
     - name: Start Ha-Proxy
       service:
-        name: httpd
+        name: haproxy
         state: started
       become: true
 
