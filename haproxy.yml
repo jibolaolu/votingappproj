@@ -7,21 +7,29 @@
         state: started
       become: true
 
-    - name: Copy HA ProxyFile Config file
+    - name: Copy HA-Proxy Config file
       copy:
         src: ./configs/haproxy.cfg
         dest: /home/ec2-user/
         mode: '0777'
 
-    - name: Run HA-Proxy Container
-      community.general.docker_container:
-        name: HaProxy
-        image: haproxy
-        volumes:
-          - /home/ec2-user/haproxy.cfg:/etc/haproxy/haproxy.cfg
-        ports:
-          - "8080:8080"
-        restart: yes
+    - name: Install HA-Proxy
+        yum:
+          name: haproxy
+          state: present
+
+    - name: Start Ha-Proxy
+      service:
+        name: httpd
+        state: started
+      become: true
+
+    - name: Copy file to Ha-Proxy
+      template:
+        src: /home/ec2-user/haproxy.cfg
+        dest: /etc/haproxy/haproxy.cfg
+        mode: '0777'
+      become: true
 
     - name: Run node exporter
       community.general.docker_container:
