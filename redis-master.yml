@@ -32,6 +32,9 @@
         command: redis-server /etc/redis/redis.conf
         restart: yes
 
+    - name: Run Sentinel command in Redis
+      command: docker exec -it Redis bash -c redis-server /etc/redis/sentinel.conf --sentinel
+
     - name: Run node exporter
       community.general.docker_container:
         name: node-exporter
