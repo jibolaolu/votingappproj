@@ -13,15 +13,25 @@
         dest: /home/ec2-user/
         mode: '0777'
 
+    name: Copy Sentimel Config file
+      copy:
+        src: ./configs/sentinel.conf
+        dest: /home/ec2-user/
+        mode: '0777'
+
     - name: Run Redis Container
       community.general.docker_container:
         name: Redis
         image: redis
         volumes:
           - /home/ec2-user/redis-slave.conf:/etc/redis/redis.conf
+          - /home/ec2-user/sentinel.conf:/etc/redis/sentinel.conf
         ports:
           - "6379:6379"
-        command: redis-server /etc/redis/redis.conf
+        command: "{{ item }}"
+        with_item:
+          - redis-server /etc/redis/redis.conf
+          - redis-server /etc/redis/sentinel.conf
         restart: yes
 
     - name: Run node exporter
