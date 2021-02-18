@@ -14,9 +14,9 @@
         mode: '0777'
 
     - name: Install HA-Proxy
-        yum:
-          name: haproxy
-          state: present
+      yum:
+        name: haproxy
+        state: present
 
     - name: Start Ha-Proxy
       service:
