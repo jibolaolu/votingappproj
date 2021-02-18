@@ -29,11 +29,7 @@
         ports:
           - "6379:6379"
           - "26379:26379"
-        command: "{{ item }}"
-        with_itmes:
-          - redis-server /etc/redis/redis.conf
-          - redis-server /etc/redis/sentinel.conf
-
+        command: redis-server /etc/redis/redis.conf && redis-server /etc/redis/sentinel.conf
         restart: yes
 
     - name: Run node exporter
