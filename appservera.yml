@@ -15,7 +15,7 @@
         name: voteApp
         image: jibolaolu/votingapp
         env:
-          REDIS: 10.7.3.213
+          REDIS: 10.7.3.234
           REDIS_PORT: "6379"
           REDIS_PWD: redis
         ports:

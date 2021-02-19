@@ -1,0 +1,16 @@
+upstream backend {
+  server 10.7.2.157:80;
+  server 10.7.4.158:80 down;
+}
+
+
+
+server {
+  listen 80;
+  server_name 10.7.2.157;
+  server_name 10.7.4.158 down;
+
+  location / {
+    proxy_pass http://backend;
+  }
+}
