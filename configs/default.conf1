@@ -1,5 +1,5 @@
 upstream backend {
-  server 10.7.2.157:80;
+  server 10.7.2.157:80 down;
   server 10.7.4.158:80 down;
 }
 

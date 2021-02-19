@@ -25,6 +25,7 @@
         image: redis
         volumes:
           - /home/ec2-user/redis-master.conf:/etc/redis/redis.conf
+          - /home/ec2-user/sentinel.conf:/etc/redis/sentinel.conf
         ports:
           - "6379:6379"
           - "26379:26379"
