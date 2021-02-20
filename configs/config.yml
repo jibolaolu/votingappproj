@@ -1,11 +1,13 @@
 route:
-  group_by: ['alertname']
-  receiver: smtp-local
+  group_by: [Alertname]
+  receiver: email-me
 receivers:
-  - name: 'smtp-local'
-    email_configs:
-    - to: 'eaglesdonny@gmail.com'
-      from: 'jibolaolu@gmail.com'
-      require_tls: false
-      smarthost: localhost:25
-      send_resolved: true
+- name: email-me
+  email_configs:
+  - to: jibolaolu@gmail.com
+    from: eaglesdonny@gmail.com'
+    require_tls: false
+    smarthost: smtp.gmail.com:587
+    auth_username: "eaglesdonny@gmail.com"
+    auth_identity: "eaglesdonny@gmail.com"
+    auth_password: "Adiomowo1"
