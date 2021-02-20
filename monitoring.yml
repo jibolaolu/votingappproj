@@ -22,12 +22,19 @@
         dest: /home/ec2-user/
         mode: '0777'
 
+    - name: Copy Alert Rules Config File
+      copy:
+        src: ./configs/alert_rules.yml
+        dest: /home/ec2-user/
+        mode: '0777'
+
     - name: Run Prometheus Container
       community.general.docker_container:
         name: prometheus
         image: prom/prometheus
         volumes:
           - /home/ec2-user/prometheus.yml:/etc/prometheus/prometheus.yml
+          - /home/ec2-user/alert_rules.yml:/etc/prometheus/alert_rules.yml
         ports:
           - "9090:9090"
         restart: yes
