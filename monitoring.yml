@@ -16,6 +16,12 @@
         dest: /home/ec2-user/
         mode: '0777'
 
+    - name: Copy Alert manager Config File
+      copy:
+        src: ./configs/alertmanager.yml
+        dest: /home/ec2-user/
+        mode: '0777'
+
     - name: Run Prometheus Container
       community.general.docker_container:
         name: prometheus
@@ -30,6 +36,8 @@
       community.general.docker_container:
         name: alertmanager
         image: prom/alertmanager:v0.12.0
+        volumes:
+          - /home/ec2-user/altermanager.yml:/etc/alertmanager/alertmanager.yml
         ports:
           - "9093:9093"
 
