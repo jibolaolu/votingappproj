@@ -81,4 +81,4 @@ scrape_configs:
 
   - job_name: 'HA-Proxy-Exporter'
     static_configs:
-      - ['10.7.1.136']
+      - targets: ['10.7.1.136:9100']
