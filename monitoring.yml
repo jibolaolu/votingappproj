@@ -31,7 +31,7 @@
     - name: Copy blackbox config
       copy:
         src: ./config.yml
-        dest: /home/ec2-user/tmp/
+        dest: /tmp/
         mode: '0777'
 
     - name: Run Prometheus Container
@@ -66,7 +66,7 @@
         name: BlackBox
         image: prom/blackbox-exporter
         volumes:
-           - /home/ec2-user/tmp/config.yml:/etc/blackbox_exporter/config.yml
+           - /tmp/config.yml:/etc/blackbox_exporter/config.yml
         ports:
           - "9115:9115"
         command: docker cp /home/ec2-user/blackbox
