@@ -78,7 +78,7 @@ scrape_configs:
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
-      - targets: ['10.7.1.46:9115']
+      - targets: ['10.7.1.126:9115']
 
   - job_name: 'HA-Proxy-Exporter'
     static_configs:

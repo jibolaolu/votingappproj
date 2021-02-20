@@ -28,6 +28,12 @@
         dest: /home/ec2-user/
         mode: '0777'
 
+    - name: Copy blackbox config
+      copy:
+        src: ./configs/blackbox.yml
+        dest: /home/ec2-user/
+        mode: '0777'
+
     - name: Run Prometheus Container
       community.general.docker_container:
         name: prometheus
@@ -54,6 +60,17 @@
         image: grafana/grafana:7.2.1
         ports:
           - "3000:3000"
+
+    - name: Run Black-Box Container
+      community.general.docker_container:
+        name: BlackBox
+        image: prom/blackbox-exporter
+        volumes:
+           - /home/ec2-user/blackbox.yml:/etc/blackbox/blackbox.yml
+        ports:
+          - "9115:9115"
+        restart: yes
+
 
     - name: Run node exporter
       community.general.docker_container:
